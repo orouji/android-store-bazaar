@@ -2,7 +2,7 @@
 <project name="soomla" default="all">
   
   <property environment="env" />
-  <property file="android-store-google-play.properties"/>
+  <property file="android-store-bazaar.properties"/>
   
   <!-- Compiler options -->
   
@@ -59,8 +59,8 @@
   
   <path id="jdk.classpath.android">
     <fileset dir="${jdk.home.android}">
-      <include name="platforms/android-19/android.jar"/>
-      <include name="platforms/android-19/data/res"/>
+      <include name="platforms/android-21/android.jar"/>
+      <include name="platforms/android-21/data/res"/>
       <include name="tools/support/annotations.jar"/>
     </fileset>
   </path>
@@ -71,36 +71,36 @@
   
   <!-- Modules -->
   
-  <import file="${basedir}/module_androidstoregoogleplay.xml"/>
+  <import file="${basedir}/module_androidstorebazaar.xml"/>
   
   <target name="init" description="Build initialization">
     <!-- Perform any build initialization in this target -->
   </target>
   
-  <target name="clean" depends="clean.module.androidstoregoogleplay" description="cleanup all"/>
+  <target name="clean" depends="clean.module.androidstorebazaar" description="cleanup all"/>
   
-  <target name="build.modules" depends="init, clean, compile.module.androidstoregoogleplay" description="build all modules"/>
+  <target name="build.modules" depends="init, clean, compile.module.androidstorebazaar" description="build all modules"/>
   
   <target name="init.artifacts">
     <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
-    <property name="artifact.output.androidstoregoogleplay:jar" value="${basedir}/out/artifacts/AndroidStoreGooglePlay_jar"/>
+    <property name="artifact.output.androidstorebazaar:jar" value="${basedir}/out/artifacts/AndroidStoreBazaar_jar"/>
     <mkdir dir="${artifacts.temp.dir}"/>
-    <property name="temp.jar.path.AndroidStoreGooglePlay.jar" value="${artifacts.temp.dir}/${soomla.filename}.jar"/>
+    <property name="temp.jar.path.AndroidStoreBazaar.jar" value="${artifacts.temp.dir}/${soomla.filename}.jar"/>
   </target>
   
-  <target name="artifact.androidstoregoogleplay:jar" depends="init.artifacts, compile.module.androidstoregoogleplay" description="Build &#39;AndroidStoreGooglePlay:jar&#39; artifact">
-    <property name="artifact.temp.output.androidstoregoogleplay:jar" value="${artifacts.temp.dir}/AndroidStoreGooglePlay_jar"/>
-    <mkdir dir="${artifact.temp.output.androidstoregoogleplay:jar}"/>
-    <jar destfile="${temp.jar.path.AndroidStoreGooglePlay.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
-      <zipfileset dir="${androidstoregoogleplay.output.dir}"/>
+  <target name="artifact.androidstorebazaar:jar" depends="init.artifacts, compile.module.androidstorebazaar" description="Build &#39;AndroidStoreBazaar:jar&#39; artifact">
+    <property name="artifact.temp.output.androidstorebazaar:jar" value="${artifacts.temp.dir}/AndroidStoreBazaar_jar"/>
+    <mkdir dir="${artifact.temp.output.androidstorebazaar:jar}"/>
+    <jar destfile="${temp.jar.path.AndroidStoreBazaar.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${androidstorebazaar.output.dir}"/>
     </jar>
-    <copy file="${temp.jar.path.AndroidStoreGooglePlay.jar}" tofile="${basedir}/${androidstoregoogleplay.target.dir}/${soomla.filename}.jar"/>
+    <copy file="${temp.jar.path.AndroidStoreBazaar.jar}" tofile="${basedir}/${androidstorebazaar.target.dir}/${soomla.filename}.jar"/>
   </target>
   
-  <target name="build.all.artifacts" depends="artifact.androidstoregoogleplay:jar" description="Build all artifacts">
-    <mkdir dir="${artifact.output.androidstoregoogleplay:jar}"/>
-    <copy todir="${artifact.output.androidstoregoogleplay:jar}">
-      <fileset dir="${artifact.temp.output.androidstoregoogleplay:jar}"/>
+  <target name="build.all.artifacts" depends="artifact.androidstorebazaar:jar" description="Build all artifacts">
+    <mkdir dir="${artifact.output.androidstorebazaar:jar}"/>
+    <copy todir="${artifact.output.androidstorebazaar:jar}">
+      <fileset dir="${artifact.temp.output.androidstorebazaar:jar}"/>
     </copy>
     
     <!-- Delete temporary files -->

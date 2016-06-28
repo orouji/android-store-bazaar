@@ -1,4 +1,4 @@
-package com.soomla.store.billing.google;
+package com.soomla.store.billing.bazaar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -35,7 +35,7 @@ import java.util.Map;
 public class SoomlaGpVerification {
 
     private static final String VERIFY_URL = "https://iap.vedidev.com/verify_android";
-    private static final String GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/token";
+    private static final String GOOGLE_AUTH_URL = "https://accounts.bazaar.com/o/oauth2/token";
     private static final String TAG = "SOOMLA SoomlaGpVerification";
 
     private final IabPurchase purchase;
@@ -171,7 +171,7 @@ public class SoomlaGpVerification {
         HttpResponse resp = client.execute(post);
 
         if (resp == null) {
-            SoomlaUtils.LogError(TAG, "Failed to connect to google server.");
+            SoomlaUtils.LogError(TAG, "Failed to connect to bazaar server.");
             return false;
         }
 

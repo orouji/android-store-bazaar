@@ -1,49 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="module_androidstoregoogleplay" default="compile.module.androidstoregoogleplay">
-  <dirname property="module.androidstoregoogleplay.basedir" file="${ant.file.module_androidstoregoogleplay}"/>
+<project name="module_androidstorebazaar" default="compile.module.androidstorebazaar">
+  <dirname property="module.androidstorebazaar.basedir" file="${ant.file.module_androidstorebazaar}"/>
 
     <property name="aidl" value="${jdk.home.android.platform.tools}aidl" />
     <property name="framework-aidl" value="${jdk.home.android.platform}framework.aidl" />
 
-  <property name="module.jdk.home.androidstoregoogleplay" value="${jdk.home.android}"/>
-  <property name="module.jdk.bin.androidstoregoogleplay" value="${jdk.bin.android}"/>
-  <property name="module.jdk.classpath.androidstoregoogleplay" value="jdk.classpath.android"/>
+  <property name="module.jdk.home.androidstorebazaar" value="${jdk.home.android}"/>
+  <property name="module.jdk.bin.androidstorebazaar" value="${jdk.bin.android}"/>
+  <property name="module.jdk.classpath.androidstorebazaar" value="jdk.classpath.android"/>
 
-  <property name="compiler.args.androidstoregoogleplay" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
+  <property name="compiler.args.androidstorebazaar" value="-encoding UTF-8 -source 1.6 ${compiler.args}"/>
 
-  <property name="androidstoregoogleplay.output.dir" value="${module.androidstoregoogleplay.basedir}/out/production/AndroidStoreGooglePlay"/>
+  <property name="androidstorebazaar.output.dir" value="${module.androidstorebazaar.basedir}/out/production/AndroidStoreBazaar"/>
 
-  <path id="androidstoregoogleplay.module.bootclasspath">
+  <path id="androidstorebazaar.module.bootclasspath">
     <!-- Paths to be included in compilation bootclasspath -->
   </path>
 
-  <path id="androidstoregoogleplay.module.production.classpath">
-    <path refid="${module.jdk.classpath.androidstoregoogleplay}"/>
+  <path id="androidstorebazaar.module.production.classpath">
+    <path refid="${module.jdk.classpath.androidstorebazaar}"/>
     <pathelement location="${basedir}/libs/square-otto-1.3.2.jar"/>
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
   </path>
 
-  <path id="androidstoregoogleplay.runtime.production.module.classpath">
-    <pathelement location="${androidstoregoogleplay.output.dir}"/>
+  <path id="androidstorebazaar.runtime.production.module.classpath">
+    <pathelement location="${androidstorebazaar.output.dir}"/>
     <pathelement location="${basedir}/libs/square-otto-1.3.2.jar"/>
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
   </path>
 
-  <path id="androidstoregoogleplay.module.classpath">
-    <path refid="${module.jdk.classpath.androidstoregoogleplay}"/>
-    <pathelement location="${androidstoregoogleplay.output.dir}"/>
+  <path id="androidstorebazaar.module.classpath">
+    <path refid="${module.jdk.classpath.androidstorebazaar}"/>
+    <pathelement location="${androidstorebazaar.output.dir}"/>
     <pathelement location="${basedir}/libs/square-otto-1.3.2.jar"/>
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
   </path>
 
-  <path id="androidstoregoogleplay.runtime.module.classpath">
-    <pathelement location="${androidstoregoogleplay.output.dir}"/>
+  <path id="androidstorebazaar.runtime.module.classpath">
+    <pathelement location="${androidstorebazaar.output.dir}"/>
     <pathelement location="${basedir}/libs/square-otto-1.3.2.jar"/>
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
@@ -51,17 +51,17 @@
   </path>
 
 
-  <patternset id="excluded.from.module.androidstoregoogleplay">
+  <patternset id="excluded.from.module.androidstorebazaar">
     <patternset refid="ignored.files"/>
   </patternset>
 
-  <patternset id="excluded.from.compilation.androidstoregoogleplay">
+  <patternset id="excluded.from.compilation.androidstorebazaar">
     <patternset refid="compiler.excluded"/>
-    <patternset refid="excluded.from.module.androidstoregoogleplay"/>
+    <patternset refid="excluded.from.module.androidstorebazaar"/>
   </patternset>
 
-  <path id="androidstoregoogleplay.module.sourcepath">
-    <dirset dir="${module.androidstoregoogleplay.basedir}">
+  <path id="androidstorebazaar.module.sourcepath">
+    <dirset dir="${module.androidstorebazaar.basedir}">
       <include name="src"/>
         <include name=".idea/gen/com/android"/>
     </dirset>
@@ -103,28 +103,28 @@
         </apply>
     </target>
 
-    <target name="compile.module.androidstoregoogleplay" depends="compile.module.androidstoregoogleplay.production" description="Compile module AndroidStoreGooglePlay"/>
+    <target name="compile.module.androidstorebazaar" depends="compile.module.androidstorebazaar.production" description="Compile module AndroidStoreBazaar"/>
 
-  <target name="compile.module.androidstoregoogleplay.production" description="Compile module AndroidStoreGooglePlay; production classes" depends="aidl">
-    <mkdir dir="${androidstoregoogleplay.output.dir}"/>
-    <javac destdir="${androidstoregoogleplay.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidstoregoogleplay}/javac">
-      <compilerarg line="${compiler.args.androidstoregoogleplay}"/>
-      <bootclasspath refid="androidstoregoogleplay.module.bootclasspath"/>
-      <classpath refid="androidstoregoogleplay.module.production.classpath"/>
-      <src refid="androidstoregoogleplay.module.sourcepath"/>
-      <patternset refid="excluded.from.compilation.androidstoregoogleplay"/>
+  <target name="compile.module.androidstorebazaar.production" description="Compile module AndroidStoreBazaar; production classes" depends="aidl">
+    <mkdir dir="${androidstorebazaar.output.dir}"/>
+    <javac destdir="${androidstorebazaar.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.androidstorebazaar}/javac">
+      <compilerarg line="${compiler.args.androidstorebazaar}"/>
+      <bootclasspath refid="androidstorebazaar.module.bootclasspath"/>
+      <classpath refid="androidstorebazaar.module.production.classpath"/>
+      <src refid="androidstorebazaar.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.androidstorebazaar"/>
     </javac>
 
-    <copy todir="${androidstoregoogleplay.output.dir}">
-      <fileset dir="${module.androidstoregoogleplay.basedir}/src">
+    <copy todir="${androidstorebazaar.output.dir}">
+      <fileset dir="${module.androidstorebazaar.basedir}/src">
         <patternset refid="compiler.resources"/>
         <type type="file"/>
-        <patternset refid="excluded.from.compilation.androidstoregoogleplay"/>
+        <patternset refid="excluded.from.compilation.androidstorebazaar"/>
       </fileset>
     </copy>
   </target>
 
-  <target name="clean.module.androidstoregoogleplay" description="cleanup module">
-    <delete dir="${androidstoregoogleplay.output.dir}"/>
+  <target name="clean.module.androidstorebazaar" description="cleanup module">
+    <delete dir="${androidstorebazaar.output.dir}"/>
   </target>
 </project>

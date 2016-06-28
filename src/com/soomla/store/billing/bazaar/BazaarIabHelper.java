@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.soomla.store.billing.google;
+package com.soomla.store.billing.bazaar;
 
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -53,9 +53,9 @@ import java.util.Set;
  *
  * More docs in parent.
  */
-public class GoogleIabHelper extends IabHelper {
+public class BazaarIabHelper extends IabHelper {
 
-    // uncomment to verify big chunk google bug (over 20)
+    // uncomment to verify big chunk bazaar bug (over 20)
 //    public static final int SKU_QUERY_MAX_CHUNK_SIZE = 50;
 
 
@@ -81,8 +81,8 @@ public class GoogleIabHelper extends IabHelper {
      * setup by calling {@link #startSetup} and wait for setup to complete. This constructor does not
      * block and is safe to call from a UI thread.
      */
-    public GoogleIabHelper() {
-        SoomlaUtils.LogDebug(TAG, "GoogleIabHelper helper created.");
+    public BazaarIabHelper() {
+        SoomlaUtils.LogDebug(TAG, "BazaarIabHelper helper created.");
     }
 
     /**
@@ -99,7 +99,7 @@ public class GoogleIabHelper extends IabHelper {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 SoomlaUtils.LogDebug(TAG, "Billing service connected.");
-                GoogleIabHelper.this.service = service;
+                BazaarIabHelper.this.service = service;
                 mService = IInAppBillingService.Stub.asInterface(service);
                 String packageName = SoomlaApp.getAppContext().getPackageName();
                 try {
@@ -124,8 +124,8 @@ public class GoogleIabHelper extends IabHelper {
             }
         };
 
-        Intent serviceIntent = new Intent("com.android.vending.billing.InAppBillingService.BIND");
-        serviceIntent.setPackage("com.android.vending");
+        Intent serviceIntent = new Intent("ir.cafebazaar.pardakht.InAppBillingService.BIND");
+        serviceIntent.setPackage("com.farsitel.bazaar");
         List<ResolveInfo> intentServices = SoomlaApp.getAppContext().getPackageManager().queryIntentServices(serviceIntent, 0);
         if (intentServices != null && !intentServices.isEmpty()) {
             // service available to handle that Intent
@@ -223,7 +223,7 @@ public class GoogleIabHelper extends IabHelper {
 
                 SharedPreferences prefs =
                         SoomlaApp.getAppContext().getSharedPreferences(SoomlaConfig.PREFS_NAME, Context.MODE_PRIVATE);
-                String publicKey = prefs.getString(GooglePlayIabService.PUBLICKEY_KEY, "");
+                String publicKey = prefs.getString(BazaarIabService.PUBLICKEY_KEY, "");
 
                 // Verify signature
                 if (!Security.verifyPurchase(publicKey, purchaseData, dataSignature)) {
@@ -582,7 +582,7 @@ public class GoogleIabHelper extends IabHelper {
 
             SharedPreferences prefs =
                     SoomlaApp.getAppContext().getSharedPreferences(SoomlaConfig.PREFS_NAME, Context.MODE_PRIVATE);
-            String publicKey = prefs.getString(GooglePlayIabService.PUBLICKEY_KEY, "");
+            String publicKey = prefs.getString(BazaarIabService.PUBLICKEY_KEY, "");
             for (int i = 0; i < purchaseDataList.size(); ++i) {
                 String purchaseData = purchaseDataList.get(i);
                 String signature = signatureList.get(i);
@@ -756,7 +756,7 @@ public class GoogleIabHelper extends IabHelper {
 
     /** Private Members **/
 
-    private static String TAG = "SOOMLA GoogleIabHelper";
+    private static String TAG = "SOOMLA BazaarIabHelper";
 
     // Connection to the service
     private IInAppBillingService mService;

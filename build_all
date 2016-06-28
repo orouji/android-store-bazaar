@@ -3,13 +3,13 @@ set -e
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 cd $DIR
 
-./download_deps
+#./download_deps
 
-#ant -buildfile android-store-google-play.xml -Dlogging="true" -Dsoomla.filename="Soomla_debug" all
-#ant -buildfile android-store-google-play.xml -Dlogging="false" -Dsoomla.filename="Soomla_release" all
-ant -buildfile android-store-google-play.xml -Dsoomla.filename="AndroidStoreGooglePlay" all
-mkdir -p build/billing-services/google-play
-mv build/*.jar build/billing-services/google-play/
-cp libs/IInAppBillingService.jar build/billing-services/google-play/
+#ant -buildfile android-store-bazaar.xml -Dlogging="true" -Dsoomla.filename="Soomla_debug" all
+#ant -buildfile android-store-bazaar.xml -Dlogging="false" -Dsoomla.filename="Soomla_release" all
+ant -buildfile android-store-bazaar.xml -Dsoomla.filename="AndroidStoreBazaar" all
+mkdir -p build/billing-services/bazaar
+mv build/*.jar build/billing-services/bazaar/
+cp libs/IInAppBillingService.jar build/billing-services/bazaar/
 
 cd - > /dev/null
