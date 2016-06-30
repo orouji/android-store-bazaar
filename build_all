@@ -10,6 +10,6 @@ cd $DIR
 ant -buildfile android-store-bazaar.xml -Dsoomla.filename="AndroidStoreBazaar" all
 mkdir -p build/billing-services/bazaar
 mv build/*.jar build/billing-services/bazaar/
-cp libs/IInAppBillingService.jar build/billing-services/bazaar/
+cp libs/IInAppBillingService.jar build/billing-services/bazaar/IInAppBillingServiceBazaar.jar
 
 cd - > /dev/null
