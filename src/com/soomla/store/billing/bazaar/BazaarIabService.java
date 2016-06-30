@@ -375,7 +375,7 @@ public class BazaarIabService implements IIabService {
         @Override
         public void onRestorePurchasessFinished(IabResult result, IabInventory inventory) {
             SoomlaUtils.LogDebug(TAG, "Restore Purchases succeeded");
-            if (result.getResponse() == IabResult.BILLING_RESPONSE_RESULT_OK && mRestorePurchasesListener != null) {
+            if (result.getResponse() == IabResult.BILLING_RESPONSE_RESULT_OK && mRestorePurchasesListener != null && inventory != null) {
                 // fetching owned items
                 List<String> itemSkus = inventory.getAllOwnedSkus();
 
@@ -426,7 +426,7 @@ public class BazaarIabService implements IIabService {
         @Override
         public void onFetchSkusDetailsFinished(IabResult result, IabInventory inventory) {
             SoomlaUtils.LogDebug(TAG, "Restore Purchases succeeded");
-            if (result.getResponse() == IabResult.BILLING_RESPONSE_RESULT_OK && mFetchSkusDetailsListener != null) {
+            if (result.getResponse() == IabResult.BILLING_RESPONSE_RESULT_OK && mFetchSkusDetailsListener != null && inventory != null) {
 
                 // @lassic (May 1st): actually, here (query finished) it only makes sense to get the details
                 // of the SKUs we already queried for
