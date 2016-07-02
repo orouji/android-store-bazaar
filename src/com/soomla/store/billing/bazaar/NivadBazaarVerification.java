@@ -49,7 +49,6 @@ public class NivadBazaarVerification {
 
     private static final String TAG = "SOOMLA NivadBazaarVerification";
 
-    private final IabPurchase purchase;
     private final String applicationId;
     private final String billingSecret;
     private final String mJWT;
