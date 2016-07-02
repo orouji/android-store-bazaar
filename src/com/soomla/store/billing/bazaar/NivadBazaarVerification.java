@@ -80,7 +80,7 @@ public class NivadBazaarVerification {
 
         this.applicationId = applicationId;
         this.billingSecret = billingSecret;
-        this.mJWT = "bearer " + generateJWT(applicationId, applicationSecret);
+        this.mJWT = "bearer " + generateJWT(applicationId, billingSecret);
         this.verifyOnServerFailure = verifyOnServerFailure;
     }
 
