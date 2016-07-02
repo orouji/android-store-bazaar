@@ -23,6 +23,7 @@
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
+	<pathelement location="${basedir}/libs/java-jwt-2.1.0.jar"/>
   </path>
 
   <path id="androidstorebazaar.runtime.production.module.classpath">
@@ -31,6 +32,7 @@
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
+	<pathelement location="${basedir}/libs/java-jwt-2.1.0.jar"/>
   </path>
 
   <path id="androidstorebazaar.module.classpath">
@@ -40,6 +42,7 @@
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
+	<pathelement location="${basedir}/libs/java-jwt-2.1.0.jar"/>
   </path>
 
   <path id="androidstorebazaar.runtime.module.classpath">
@@ -48,6 +51,7 @@
     <pathelement location="${basedir}/libs/AndroidStore.jar"/>
     <pathelement location="${basedir}/libs/SoomlaAndroidCore.jar"/>
 	<pathelement location="${basedir}/libs/IInAppBillingService.jar"/>
+	<pathelement location="${basedir}/libs/java-jwt-2.1.0.jar"/>
   </path>
 
 
