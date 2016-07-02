@@ -145,7 +145,6 @@ public class NivadBazaarVerification {
                 // jsonObject.put("packageName", purchase.getPackageName());
                 jsonObject.put(isSubscription ? "subscription_id" : "product_id", purchase.getSku());
                 // jsonObject.put("accessToken", accessToken);
-                SoomlaUtils.LogDebug(TAG, String.format("verifying purchase on server: %s", VERIFY_URL));
                 SoomlaUtils.LogDebug(TAG, "purchase details: sku = " + purchase.getSku() + " token = " + purchaseToken);
 
                 SharedPreferences prefs = SoomlaApp.getAppContext().
@@ -172,8 +171,8 @@ public class NivadBazaarVerification {
                     }
                     JSONObject resultJsonObject = new JSONObject(stringBuilder.toString());
                     if (statusCode >= 200 && statusCode <= 299) {
-                        String purchaseState = resp.getString("purchaseState");
-                        SoomlaUtils.LogInfo(TAG, "purchase state is " + purchaseState);
+                        String purchaseState = resultJsonObject.getString("purchaseState");
+                        SoomlaUtils.LogDebug(TAG, "purchase state is " + purchaseState);
                         if ("valid".equals(purchaseState) || "unknown".equals(purchaseState)) {
                             verified = true;
                         } else if ("invalid".equals(purchaseState)) {
