@@ -41,7 +41,7 @@ import java.util.Map;
 public class NivadBazaarVerification {
 
     private static final String URL_BASE = "https://api.nivad.io";
-    private static final String API_BASE = URL_BASE + "/v"+ API.API_VERSION;
+    private static final String API_BASE = URL_BASE + "/v1";
     private static final String URL_PURCHASE = API_BASE + "/billing/check/purchase";
     private static final String URL_SUBSCRIPTION = API_BASE + "/billing/check/subscription";
 
