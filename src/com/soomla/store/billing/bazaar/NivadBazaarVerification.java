@@ -91,7 +91,7 @@ public class NivadBazaarVerification {
             NetworkInfo info = conMgr.getActiveNetworkInfo();
             return info != null && info.isConnected();
         } catch (SecurityException e) {
-            Log.e(TAG, "Please add " +
+            SoomlaUtils.LogError(TAG, "Please add " +
                     "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>" +
                     " to your app manifest");
             return false;
@@ -171,13 +171,13 @@ public class NivadBazaarVerification {
                     JSONObject resultJsonObject = new JSONObject(stringBuilder.toString());
                     if (statusCode >= 200 && statusCode <= 299) {
                         String purchaseState = response.getString("purchaseState");
-                        Log.i("API", "purchase state is " + purchaseState);
+                        SoomlaUtils.LogInfo(TAG, "purchase state is " + purchaseState);
                         if ("valid".equals(purchaseState) || "unknown".equals(purchaseState)) {
                             verified = true;
                         } else if ("invalid".equals(purchaseState)) {
                             verified = false;
                         } else {
-                            Log.e("API", "Invalid response format");
+                            SoomlaUtils.LogError(TAG, "Invalid response format");
                             // Server error, using default value
                         }
                         if (verified) {
