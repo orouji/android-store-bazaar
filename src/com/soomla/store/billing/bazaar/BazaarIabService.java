@@ -160,14 +160,14 @@ public class BazaarIabService implements IIabService {
     public void configVerifyPurchases(Map<String, Object> config) {
 
         KeyValueStorage.deleteKeyValue(VERIFY_PURCHASES_KEY);
-        KeyValueStorage.deleteKeyValue(VERIFY_CLIENT_ID_KEY);
-        KeyValueStorage.deleteKeyValue(VERIFY_CLIENT_SECRET_KEY);
-        KeyValueStorage.deleteKeyValue(VERIFY_REFRESH_TOKEN_KEY);
+        KeyValueStorage.deleteKeyValue(VERIFY_APPLICATION_ID_KEY);
+        KeyValueStorage.deleteKeyValue(VERIFY_BILLING_SECRET_KEY);
+        // KeyValueStorage.deleteKeyValue(VERIFY_REFRESH_TOKEN_KEY);
         if (config != null) {
             try {
-                checkStringConfigItem(config, "clientId");
-                checkStringConfigItem(config, "clientSecret");
-                checkStringConfigItem(config, "refreshToken");
+                checkStringConfigItem(config, "applicationId");
+                checkStringConfigItem(config, "billingSecret");
+                //checkStringConfigItem(config, "refreshToken");
             } catch (IllegalArgumentException e) {
                 SoomlaUtils.LogError(TAG, e.getMessage());
                 return;
@@ -178,9 +178,9 @@ public class BazaarIabService implements IIabService {
                 verifyOnServerFailure = false;
             }
 
-            KeyValueStorage.setValue(VERIFY_CLIENT_ID_KEY, (String) config.get("clientId"));
-            KeyValueStorage.setValue(VERIFY_CLIENT_SECRET_KEY, (String) config.get("clientSecret"));
-            KeyValueStorage.setValue(VERIFY_REFRESH_TOKEN_KEY, (String) config.get("refreshToken"));
+            KeyValueStorage.setValue(VERIFY_APPLICATION_ID_KEY, (String) config.get("applicationId"));
+            KeyValueStorage.setValue(VERIFY_BILLING_SECRET_KEY, (String) config.get("billingSecret"));
+            // KeyValueStorage.setValue(VERIFY_REFRESH_TOKEN_KEY, (String) config.get("refreshToken"));
             KeyValueStorage.setValue(VERIFY_ON_SERVER_FAILURE, verifyOnServerFailure.toString());
 
             KeyValueStorage.setValue(VERIFY_PURCHASES_KEY, "yes");
@@ -327,15 +327,11 @@ public class BazaarIabService implements IIabService {
             public void run() {
                 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
+
+                NivadBazaarVerification.getInstance(KeyValueStorage.getValue(VERIFY_APPLICATION_ID_KEY),
+                        KeyValueStorage.getValue(VERIFY_BILLING_SECRET_KEY));
                 for (IabPurchase purchase : purchases) {
-
-                    SoomlaGpVerification sv = new SoomlaGpVerification(purchase,
-                            KeyValueStorage.getValue(VERIFY_CLIENT_ID_KEY),
-                            KeyValueStorage.getValue(VERIFY_CLIENT_SECRET_KEY),
-                            KeyValueStorage.getValue(VERIFY_REFRESH_TOKEN_KEY),
-                            Boolean.parseBoolean(KeyValueStorage.getValue(VERIFY_ON_SERVER_FAILURE)));
-
-                    sv.verifyPurchase();
+                    NivadBazaarVerification.getInstance().verifyPurchase(purchase);
                 }
 
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
@@ -676,9 +672,9 @@ public class BazaarIabService implements IIabService {
 
     public static final String VERIFY_PURCHASES_KEY = "soomla.verification.verifyPurchases";
     public static final String VERIFY_ON_SERVER_FAILURE = "soomla.verification.verifyOnServerFailure";
-    public static final String VERIFY_REFRESH_TOKEN_KEY = "soomla.verification.refreshToken";
-    public static final String VERIFY_CLIENT_ID_KEY = "soomla.verification.clientId";
-    public static final String VERIFY_CLIENT_SECRET_KEY = "soomla.verification.clientSecret";
+    // public static final String VERIFY_REFRESH_TOKEN_KEY = "soomla.verification.refreshToken";
+    public static final String VERIFY_APPLICATION_ID_KEY = "soomla.verification.applicationId";
+    public static final String VERIFY_BILLING_SECRET_KEY = "soomla.verification.billingSecret";
     public static final String VERIFY_ACCESS_TOKEN_KEY = "soomla.verification.accessToken";
 
     private static final String SKU = "ID#sku";
