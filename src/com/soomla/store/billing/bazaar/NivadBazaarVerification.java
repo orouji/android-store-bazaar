@@ -71,7 +71,7 @@ public class NivadBazaarVerification {
     }
 
     public static NivadBazaarVerification getInstance() {
-        return instance();
+        return instance;
     }
 
     private NivadBazaarVerification(String applicationId, String billingSecret, boolean verifyOnServerFailure) {
