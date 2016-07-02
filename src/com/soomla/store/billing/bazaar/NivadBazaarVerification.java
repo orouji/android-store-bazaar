@@ -170,7 +170,7 @@ public class NivadBazaarVerification {
                     }
                     JSONObject resultJsonObject = new JSONObject(stringBuilder.toString());
                     if (statusCode >= 200 && statusCode <= 299) {
-                        String purchaseState = response.getString("purchaseState");
+                        String purchaseState = resp.getString("purchaseState");
                         SoomlaUtils.LogInfo(TAG, "purchase state is " + purchaseState);
                         if ("valid".equals(purchaseState) || "unknown".equals(purchaseState)) {
                             verified = true;
